@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="/">SARPKAYA HUKUK</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/about">Hakkımızda </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/articles">Makaleler </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/forum">Forum</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/satinal">Satın Al </a>
+          </li>
+          
+          <li style="padding: 0.45em;" class="headerContacts normally hidden-xs">
+            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size:13px;color:silver"></i>
+            <a class="flex-container" style="font-size: 14px;" href="mailto:gorkemsarpkaya@gmail.com">gorkemsarpkaya@gmail.com</a> 
+          </li>
+          <li style="padding: 0.45em;" class="headerContacts normally hidden-xs">
+            <i class="fa fa-phone" aria-hidden="true" style="font-size:13px;color:silver"></i>
+            <a class="center" style="font-size: 14px;" href="tel:+90 541 536 99 44">+90 541 536 99 44</a>
+          </li>
+          
+        </ul>
+        <ul class="navbar-nav ml-auto">
+
+          {% if session["logged_in"] %}
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Hoşgeldiniz.. </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/logout">Çıkış Yap </a>
+          </li>
+          
+          {% else %}
+          <li class="nav-item active">
+            <a class="nav-link" href="/login">Giriş </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/register">Kayıt Ol </a>
+          </li>
+
+          {% endif %}
+          
+          
+          
+          
+          
+        </ul>
+      </div>
+    </nav>
