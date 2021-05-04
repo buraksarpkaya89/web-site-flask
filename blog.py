@@ -3,7 +3,7 @@ from flask_mysqldb import MySQL
 from wtforms import Form, TextAreaField,StringField, PasswordField,validators
 from passlib.hash import sha256_crypt
 from functools import wraps
-from flask_wtf import Form, RecaptchaField
+from flask_wtf import RecaptchaField
 from flask import Flask, render_template, request
 from authlib.integrations.flask_client import OAuth
 
@@ -114,42 +114,43 @@ def anayasahukuku():
 def satinal():
     return render_template("satinal.html")
 
-@app.route("/forum",methods =["GET","POST"])
+@app.route("/addforum",methods =["GET", "POST"])
 @login_required
-def forum():
-    form = forum(request.form)
+def addforum():
+    form = Addforum(request.form)
     if request.method == "POST" and form.validate():
         email = form.email.data
         yazi = form.yazi.data
 
         cursor = mysql.connection.cursor()
 
-        sorgu = "Insert into forum(email,yazi) VALUES(%s,%s)"
+        sorgu = "Insert into forum (Email,Konu) VALUES(%s,%s)"
         cursor.execute(sorgu,(email,yazi))
 
         mysql.connection.commit()
         cursor.close()
-        return redirect(url_for("forum"))
-    return render_template("forum.html",form = form)
+        flash("Talebiniz Başarıyla Avukatlarımıza Gönderilmiştir..","success")
+        return redirect(url_for("addforum"))    
+    return render_template("addforum.html",form = form)
 
-@app.route("/forum")
+@app.route("/forumdetail")
 @login_required
-def verial():
+def forumdetail():
+    
     cursor = mysql.connection.cursor()
     sorgu = "Select * From forum"
-    result = cursor.execute(sorgu,)
+    result = cursor.execute(sorgu)
+
     if result > 0:
-        forum = cursor.fetchall()
-        return render_template("forum.html", forum = forum)
+        articles = cursor.fetchone()
+        return render_template("forumdetail.html", forumdetails = articles)
     else:
-        return render_template("forum.html")
+        return render_template("forumdetail.html")
 
-    
+class Addforum(Form):
+    email = StringField("E-mail Adresi", validators=[validators.length(min=10, max= 50)])
+    yazi = TextAreaField("Konu", validators= [validators.length(min=10)])
 
-class forum(Form):
-    email = StringField("email", validators=[validators.length(min=10, max= 50)])
-    yazi = TextAreaField("yazi", validators= [validators.length(min=10)])
-    
 #Kayıt olma
 @app.route("/register",methods = ["GET","POST"])
 def register():

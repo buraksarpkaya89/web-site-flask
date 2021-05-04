@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h1>Sonuçlar</h1>
+
+{% if articles %}
+
+<ul class="list-group">
+  {% for forumlar in forum %}
+  <li class="list-group-item">{{forumlar.Email}}</li>
+  {% endfor %}
+</ul>
+
+
+{% else %}
+<div class="alert alert-danger">dafgsgsgs</div>
+{% endif %}
+
+{% endblock body %}
