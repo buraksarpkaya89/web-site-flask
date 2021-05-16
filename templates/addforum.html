@@ -1,46 +1,48 @@
 {% extends 'layout.html' %}
 {% block body %}
-
+<br>
 <h1 style="font-size: 35px;">&nbspTalep ve Konu Giriş Alanı</h1>
 <hr>         
 
 {% from "includes/formhelpers.html" import render_field %}
-<form style="padding: 2ex;"  method = "post">
-  {{ render_field(form.email,placeholder="Email",class ="form-control") }}
-  {{ render_field(form.yazi,placeholder="Konu",class ="form-control") }}
-    
-    <button type="submit" class="btn btn-danger">Gönder</button>
-    <br>
-    <br>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">E-Mail</th>
-          <th scope="col">Konu</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for forumlar in forum %}
-        <tr>
-          <th scope="row">{{forumlar.id}}</th>
-          <td>{{forumlar.email}}</td>
-          <td>{{forumlar.yazi}}</td>
-          <td><a href="">Güncelle</a></td>
-          <td><a href="">Güncelle</a></td>
-        </tr>
+<div class="container-fluid">
+  <form style="padding: 2ex;"  method = "post">
+    {{ render_field(form.email,placeholder="Email",class ="form-control") }}
+    {{ render_field(form.yazi,placeholder="Konu",class ="form-control") }}
+      
+      <button type="submit" class="btn btn-primary">Gönder</button>
+      <br>
+      <br>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">E-Mail</th>
+            <th scope="col">Konu</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for forumlar in forum %}
+          <tr>
+            <th scope="row">{{forumlar.id}}</th>
+            <td>{{forumlar.email}}</td>
+            <td>{{forumlar.yazi}}</td>
+            <td><a href="">Güncelle</a></td>
+            <td><a href="">Güncelle</a></td>
+          </tr>
+          
+          
+          {% endfor %}
+          
         
-        
-        {% endfor %}
-        
-       
-      </tbody>
-    </table>
-    
-</form>
+        </tbody>
+      </table>
+      
+  </form>
+</div>
 
 
 

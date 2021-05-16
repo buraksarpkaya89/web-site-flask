@@ -1,67 +1,73 @@
 {% extends 'layout.html' %}
 {% block body %}
-    
+<br>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--Card-->
-<div class="card shadow mb-5 bg-white rounded">
-    <!--Card-Body-->
-    <div class="card-body">
-        <!--Card-Title-->
-        <p style="font-size: 25px;" class="card-title text-center shadow mt-2 mb-1 rounded">Hukuk ve Danışmanlık Rezervasyon İşlemleri</p>
-        <div class="icons text-center">
-            <i id="far" class="fa fa-gavel fa-2x" aria-hidden="true"></i>
-        </div>
-        <hr>
-        <p class="searchText"><strong>Aşağıdaki bilgileri doldurarak rezervasyon talebinde bulunun.</strong></p>
-        <!--First Row-->
-        <!--Second Row-->
-        <div class="row">
-            <div class="col-sm-6"> <select class="browser-default custom-select mb-4" id="select">
-                    <option value="" disabled="" selected="">Mahkeme Adı</option>
-                    <option value="1">Ağır Ceza Mahkemesi</option>
-                    <option value="2">Sulh Ceza Mahkemesi</option>
-                    <option value="3">Ceza Mahkemesi</option>
-                    <option value="3">Asliye Ceza Mahkemesi</option>
-                    <option value="3">İş Mahkemesi</option>
-                    <option value="3">İdari Mahkeme</option>
-                    <option value="3">Çocuk Ağır Ceza Mahkemesi</option>
-                    <option value="3">İcra Mahkemesi</option>
-                    <option value="3">Hukuk Mahkemesi</option>
-                    <option value="3">Arabuluculuk</option>
-                    <option value="3">Yargıtay,Danıştay,Anayasa Mahkemesi</option>
+{% from "includes/formhelpers.html" import render_field %}
+<form action="{{ url_for('satinal')}}" id="satinalid" method="POST">
+    
+    
+    <div class="card shadow mb-5 bg-white rounded">
+        <!--Card-Body-->
+        <div class="card-body">
+            <!--Card-Title-->
+            <p style="font-size: 25px;" class="card-title text-center shadow mt-2 mb-1 rounded">Hukuk ve Danışmanlık Rezervasyon İşlemleri</p>
+            <div class="icons text-center">
+                <i id="far" class="fa fa-gavel fa-2x bg-secondary text-body" aria-hidden="true"></i>
+            </div>
+            <hr>
+            <p class="searchText"><strong>Aşağıdaki bilgileri doldurarak rezervasyon talebinde bulunun.</strong></p>
+            <!--First Row-->
+            <!--Second Row-->
+            <div class="row">
+                <div class="col-sm-6"> <select name="dava" class="browser-default custom-select mb-4" id="select">
+                        <option value="" disabled="" selected="">Mahkeme Adı</option>
+                        <option value="1">Ağır Ceza Mahkemesi</option>
+                        <option value="2">Sulh Ceza Mahkemesi</option>
+                        <option value="3">Ceza Mahkemesi</option>
+                        <option value="4">Asliye Ceza Mahkemesi</option>
+                        <option value="5">İş Mahkemesi</option>
+                        <option value="6">İdari Mahkeme</option>
+                        <option value="7">Çocuk Ağır Ceza Mahkemesi</option>
+                        <option value="8">İcra Mahkemesi</option>
+                        <option value="9">Hukuk Mahkemesi</option>
+                        <option value="10">Arabuluculuk</option>
+                        <option value="11">Yargıtay,Danıştay,Anayasa Mahkemesi</option>
+
+                    </select> </div>
+                <div class="col-sm-6"> <select name="avukat" class="browser-default custom-select mb-4" id="select">
+                        <option value="" disabled="" selected="">Avukat Seçimi</option>
+                        <option value="1">Av.Görkem Sarpkaya</option>
+                        <option value="2">Av.Merve Gürses</option>
+                    </select> </div>
+            </div>
+            <!--Third Row-->
+            <div class="row">
+                <div class="col-sm-6"> <input name="tarih" placeholder="&#xf073; Tarih" type="text" id="date-picker-example" class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome"> </div>
+                <div class="col-sm-6"> <select name="saat" class="browser-default custom-select mb-4" id="select">
+                    <option value="" disabled="" selected="">Saat Aralığı</option>
+                    <option value="1">09:00-10.00</option>
+                    <option value="2">10:00-11.00</option>
+                    <option value="3">11:00-12.00</option>
+                    <option value="4">14:00-15.00</option>
+                    <option value="5">15:00-16.00</option>
+                    <option value="6">16:00-17.00</option>
 
                 </select> </div>
-            <div class="col-sm-6"> <select class="browser-default custom-select mb-4" id="select">
-                    <option value="" disabled="" selected="">Avukat Seçimi</option>
-                    <option value="1">Av.Görkem Sarpkaya</option>
-                    <option value="2">Av.Merve Gürses</option>
-                </select> </div>
+            </div>
+            <!--Fourth Row-->
+            
+            <!--Fifth Row-->
+            <div class="row">
+                <div class="col-sm-4"> <input name="adsoyad" placeholder="Ad Soyad" type="text" class="form-control" id="select">
+                </div>
+                <div class="col-sm-4"> <input name="numara" placeholder="İrtibat Numarası" type="text" class="form-control" id="select">
+                </div>
+                <div class="col-sm-4"> <input name="email" placeholder="E-mail Adresi" type="text" class="form-control" id="select">
+                </div>
+            </div> 
+            <button class="btn btn-primary float-right mt-5">Rezervasyon Talebi Yap</button>
         </div>
-        <!--Third Row-->
-        <div class="row">
-            <div class="col-sm-6"> <input placeholder="&#xf073; Tarih" type="text" id="date-picker-example" class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome"> </div>
-            <div class="col-sm-6"> <select class="browser-default custom-select mb-4" id="select">
-                <option value="" disabled="" selected="">Saat Aralığı</option>
-                <option value="1">09:00-10.00</option>
-                <option value="2">10:00-11.00</option>
-                <option value="3">11:00-12.00</option>
-                <option value="4">14:00-15.00</option>
-                <option value="5">15:00-16.00</option>
-                <option value="6">16:00-17.00</option>
-
-            </select> </div>
-        </div>
-        <!--Fourth Row-->
-        
-        <!--Fifth Row-->
-        <div class="row">
-            <div class="col-sm-4"> <input placeholder="Ad Soyad" type="text" class="form-control" id="select">
-            </div>
-            <div class="col-sm-4"> <input placeholder="İrtibat Numarası" type="text" class="form-control" id="select">
-            </div>
-            <div class="col-sm-4"> <input placeholder="E-mail Adresi" type="text" class="form-control" id="select">
-            </div>
-        </div> <a href="#" class="btn btn-primary float-right mt-5">Rezervasyon Talebi Yap</a>
     </div>
-</div>
+</form>
 {% endblock body %}

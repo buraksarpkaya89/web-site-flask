@@ -2,187 +2,14 @@
 
 <html lang = "en">
     <head>
-        <style>
-            #bosluk {
-                margin-left: 10px;
-            }        
-            
-            div#article {
-                display: inline-block;
-                margin-right: 0;
-                margin-left: 0;               
-            }
-            div.container-fluid {
-                padding-right: 0;
-                padding-left: 0;  
-            }
- 
-            footer {
-                padding:50px 0;
-                color:#f0f9ff;
-                background-color:#525457;
-                width:100%;
-                height: auto;
-                bottom:0;
-                position:relative;
-                border-radius: 4px;  
-                            
-            }
-
-            #paragraf::first-letter {
-                color: blue;
-                font-size: 30px;
-            }
-            #makale {
-                display: flex;
-                justify-content: flex-start;
-                margin: 10px;
-                flex-wrap: wrap;
-                
-            }
-
-            #googlebutton {
-                display: flex;
-                justify-content: flex-start;
-                flex-wrap: wrap;
-                margin-bottom: 10px;
-                margin-top: 0px;
-                margin-left: 15px;
-                background-color: white;
-                border-radius: 4px;
-                width: 185px;
-                padding: 12px;
-                font-size: 17px;
-                opacity: 0.85;
-                text-align: center;
-            }
-            #googlebutton:hover {
-                opacity: 1;
-                background-color: rgb(14, 100, 100);
-                color: yellow
-            }
-            #girisbuton {
-                width: 185px;
-            }
-            #girisbuton:hover {
-                background-color: rgb(14, 100, 100);
-                color: yellow;
-            }
-
-            #baslik {
-                font-family: 'Courgette', cursive;
-            }
-
-            .card {
-                margin: auto;
-                border: solid 1px #dbdad7;
-                width: 60%;
-                padding-left: 10px !important;
-                padding-bottom: 10px !important;
-                padding-right: 10px !important;
-                padding-top: 0px !important
-            }
-            
-            .card-title {
-                margin: auto;
-                padding: 15px;
-                background-color: #2f7fad;
-                color: white;
-                width: 80%
-            }
-            
-            div.card-body {
-                padding: 0px
-            }
-            
-            .custom-select {
-                width: 100%
-            }
-            
-            .btn2 {
-                margin-left: 10%
-            }
-            
-            input {
-                outline: 0 !important;
-                border-width: 0 0 2px !important;
-                border-color: #d1d1cf !important
-            }
-            
-            input:focus {
-                border-color: #d1d1cf !important;
-                -webkit-box-shadow: none !important;
-                box-shadow: none !important
-            }
-            
-            select {
-                outline: 0 !important;
-                border-width: 0 0 2px !important;
-                border-color: #d1d1cf !important
-            }
-            
-            select:focus {
-                border-color: #d1d1cf !important;
-                -webkit-box-shadow: none !important;
-                box-shadow: none !important
-            }
-            
-            .radiobtn {
-                margin-left: 3.5%
-            }
-            
-            .icons {
-                margin: auto !important
-            }
-            
-            #far {
-                border-radius: 25px;
-                width: 10%;
-                margin-left: 5%;
-                border: solid 2px #dbdad7;
-                margin-top: 5%;
-                text-align: center
-            }
-            
-            .fa-plane {
-                color: #1cad9f
-            }
-            
-            .fa-taxi {
-                color: #c2f700
-            }
-            
-            .fa-train {
-                color: red
-            }
-            
-            @media only screen and (max-width: 600px) {
-                .card {
-                    margin: auto;
-                    border: solid 1px #dbdad7;
-                    width: 90%;
-                    padding-left: 10px !important;
-                    padding-bottom: 10px !important;
-                    padding-right: 10px !important;
-                    padding-top: 0px !important
-                }
-            
-                .fa {
-                    border-radius: 25px;
-                    width: 15%;
-                    margin-left: 5%;
-                    border: solid 2px #dbdad7;
-                    margin-top: 5%;
-                    text-align: center
-                }
-            }
-                
-        </style>
+        
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Layout</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/proje.css">
+        <link rel="stylesheet" href="/static/styles.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -192,6 +19,11 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Shadows+Into+Light&display=swap" rel="stylesheet">
         
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+
+
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -201,12 +33,13 @@
             $( "#datepicker" ).datepicker();
         } );
         </script>
+        
 
     <body style="background-color: rgb(248, 247, 228);">
         {% include "includes/navbar.html" %}
         
 
-        <br><br><br>
+        <br><br>
         <div class = "container-fluid">
             {% include "includes/messages.html" %}
             {% block body %}

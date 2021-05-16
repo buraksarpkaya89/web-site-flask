@@ -6,6 +6,7 @@ from functools import wraps
 from flask_wtf import RecaptchaField
 from flask import Flask, render_template, request
 from authlib.integrations.flask_client import OAuth
+import cgi
 
 
 #Kullanıcı giriş decorator
@@ -109,10 +110,29 @@ def borclarhukuku():
 def anayasahukuku():
     return render_template("anayasahukuku.html")
 
-@app.route("/satinal")
+@app.route("/satinal",methods =["GET", "POST"])
 @login_required
 def satinal():
-    return render_template("satinal.html")
+    form = reservations(request.form)
+    if request.method == "POST":
+        dava = form.dava.data
+        avukat = form.avukat.data
+        date = form.date.data
+        saat = form.saat
+        adsoyad = form.adsoyad.data
+        numara = form.numara.data
+        email = form.email.data
+
+        cursor = mysql.connection.cursor()
+
+        sorgu = "Insert into reservation (dava,avukat,date,saat,adsoyad,numara,email) VALUES(%s,%s,%s,%s,%s,%s,%s)"
+        cursor.execute(sorgu,(dava,avukat,date,saat,adsoyad,numara,email))
+
+        mysql.connection.commit()
+        cursor.close()
+        flash("Talebiniz Başarıyla Avukatlarımıza Gönderilmiştir..","success")
+        return redirect(url_for("satinal"))    
+    return render_template("satinal.html",form = form)
 
 @app.route("/addforum",methods =["GET", "POST"])
 @login_required
@@ -142,14 +162,29 @@ def forumdetail():
     result = cursor.execute(sorgu)
 
     if result > 0:
-        articles = cursor.fetchone()
+        articles = cursor.fetchall()
         return render_template("forumdetail.html", forumdetails = articles)
     else:
         return render_template("forumdetail.html")
+    
 
 class Addforum(Form):
     email = StringField("E-mail Adresi", validators=[validators.length(min=10, max= 50)])
     yazi = TextAreaField("Konu", validators= [validators.length(min=10)])
+
+form = cgi.FieldStorage()
+class reservations(Form):
+    dava = form.getvalue("dava")
+    avukat = form.getvalue("avukat")
+    date = form.getvalue("tarih")
+    saat = form.getvalue("saat")
+    adsoyad = TextAreaField("adsoyad")
+    numara = TextAreaField("numara")
+    email = TextAreaField("email")
+
+
+    
+        
 
 #Kayıt olma
 @app.route("/register",methods = ["GET","POST"])
